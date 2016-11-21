@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script type="text/javascript" src="matter.js"></script>
+		<script type="text/javascript" src="c:\users\belal\documents\github\disquemathjs\disquemath.js"></script>
+		<script type="text/javascript" src="c:\users\belal\documents\github\disquesimpleai\ai.js"></script>
+		<style type="text/css">
+			html * {
+				margin: 0px; 
+				padding: 0px;
+				font-family: "Calibri";
+			}
+		</style>
+	</head>
+	<body>
+			<canvas id="abody"></canvas>
+		<script type="text/javascript">
+			var Engine = Matter.Engine,
+    		Render = Matter.Render,
+    		World = Matter.World,
+    		Bodies = Matter.Bodies;
+
+			// create an engine
+			var engine = Engine.create();
+
+			// create two boxes and a ground
+			var boxA = Bodies.rectangle(400, 200, 80, 80);
+			var boxB = Bodies.rectangle(450, 50, 80, 80);
+			var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+
+
+			// add all of the bodies to the world
+			World.add(engine.world, [boxA, boxB, ground]);
+
+			// run the engine
+			Engine.run(engine);
+
+			// run the renderer
+			//Render.run(render);
+			abody.width = window.innerWidth;
+			abody.height = window.innerHeight;
+			var context = abody.getContext('2d');
+			var mother = new mother(0, 0, v(400, 400), 100, 20);
+
+			setInterval(function() {
+				clear(context, abody.width, abody.height);
+				mother.render(context);
+			}, 1000/60)
+		</script>
+
+	</body>
+</html>
