@@ -26,22 +26,23 @@
 			var boxA = Bodies.rectangle(400, 200, 80, 80);
 			var boxB = Bodies.rectangle(450, 50, 80, 80);
 			var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
-
-
+			var circ = Bodies.circle(400, 400, 8, 8);
 			// add all of the bodies to the world
-			World.add(engine.world, [boxA, boxB, ground]);
+			//World.add(engine.world, [boxA, boxB, ground]);
 
 			// run the engine
 			Engine.run(engine);
+			engine.world.gravity.y = 0;
 
-			// run the renderer
-			//Render.run(render);
+
 			abody.width = window.innerWidth;
 			abody.height = window.innerHeight;
 			var context = abody.getContext('2d');
-			var mother = new mother(0, 0, v(400, 400), 100, 20);
+			var mother = new mother(0, 0, v(400, 400), 100, 50, Bodies, World, engine);
 
 			setInterval(function() {
+				Engine.update(engine);
+				mother.update();
 				clear(context, abody.width, abody.height);
 				mother.render(context);
 			}, 1000/60)
